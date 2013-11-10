@@ -16,18 +16,19 @@ for iter = 1:num_iters
     % Hint: While debugging, it can be useful to print out the values
     %       of the cost function (computeCost) and gradient here.
     %
-
-
-
-
-
-
+    
+    h_theta = X * theta;
+    delta = (1/m * ((h_theta - y)' * X))';
+    %fprintf('Size of delta: %d x %d \n', size(delta, 1), size(delta, 2));
+    
+    theta = theta - (alpha * delta);
 
     % ============================================================
 
-    % Save the cost J in every iteration    
+    % Save the cost J in every iteration
     J_history(iter) = computeCost(X, y, theta);
 
 end
+J_history % check that value of J(theta) decreases with each step
 
 end
