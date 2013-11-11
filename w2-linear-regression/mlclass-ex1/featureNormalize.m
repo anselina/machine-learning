@@ -26,13 +26,16 @@ sigma = zeros(1, size(X, 2));
 % Hint: You might find the 'mean' and 'std' functions useful.
 %       
 
+% Calculate the mean and standard deviation of each feature 
+% (i.e. each column in X)
+mu = mean(X);
+sigma = std(X);
 
+num_features = size(X, 2); % num of cols in X = num of features
 
-
-
-
-
-
+for i = 1:num_features
+    X_norm(:,i) = (X(:,i) - mu(i)) / sigma(i);
+end
 
 % ============================================================
 
