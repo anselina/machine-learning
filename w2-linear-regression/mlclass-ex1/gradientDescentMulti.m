@@ -17,15 +17,10 @@ for iter = 1:num_iters
     %       of the cost function (computeCostMulti) and gradient here.
     %
 
-
-
-
-
-
-
-
-
-
+    h_theta = X * theta;
+    delta = (1/m * ((h_theta - y)' * X))';
+    
+    theta = theta - (alpha .* delta);
 
     % ============================================================
 
@@ -33,5 +28,6 @@ for iter = 1:num_iters
     J_history(iter) = computeCostMulti(X, y, theta);
 
 end
+J_history % check that J decreases
 
 end
