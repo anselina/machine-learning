@@ -89,11 +89,32 @@ num_iters = 400;
 theta = zeros(3, 1);
 [theta, J_history] = gradientDescentMulti(X, y, theta, alpha, num_iters);
 
+% Test multiple values of alpha
+theta2 = zeros(3,1);
+theta3 = zeros(3,1);
+theta4 = zeros(3,1);
+theta5 = zeros(3,1);
+alpha2 = 0.001;
+alpha3 = 0.003;
+alpha4 = 0.03;
+alpha5 = 0.1;
+[theta2, J2] = gradientDescentMulti(X, y, theta2, alpha2, num_iters);
+[theta3, J3] = gradientDescentMulti(X, y, theta3, alpha3, num_iters);
+[theta4, J4] = gradientDescentMulti(X, y, theta4, alpha4, num_iters);
+[theta5, J5] = gradientDescentMulti(X, y, theta5, alpha5, num_iters);
+
 % Plot the convergence graph
 figure;
 plot(1:numel(J_history), J_history, '-b', 'LineWidth', 2);
 xlabel('Number of iterations');
 ylabel('Cost J');
+hold on;
+plot(1:numel(J2), J2, 'r', 'LineWidth', 2);
+plot(1:numel(J3), J3, 'k', 'LineWidth', 2);
+plot(1:numel(J4), J4, 'g', 'LineWidth', 2);
+plot(1:numel(J5), J5, 'm', 'LineWidth', 2);
+legend('alpha=0.01', 'alpha=0.001', 'alpha=0.003', 'alpha=0.03', 'alpha=0.1');
+% From this graph, we see that alpha=0.01 is an appropriate learning rate
 
 % Display gradient descent's result
 fprintf('Theta computed from gradient descent: \n');
@@ -104,7 +125,11 @@ fprintf('\n');
 % ====================== YOUR CODE HERE ======================
 % Recall that the first column of X is all-ones. Thus, it does
 % not need to be normalized.
-price = 0; % You should change this
+
+X2 = [1650 3];
+X2_norm = (X2 - mu) ./ sigma; % normalize features first
+X2_norm = [1 X2_norm]; % add first column of all-ones
+price = X2_norm * theta;
 
 
 % ============================================================
