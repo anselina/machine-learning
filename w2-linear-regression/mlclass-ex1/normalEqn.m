@@ -12,8 +12,9 @@ theta = zeros(size(X, 2), 1);
 
 % ---------------------- Sample Solution ----------------------
 
-
-
+% No need to do feature scaling, but we must still add a col of 1's to X
+% (already done in ex1_multi.m)
+theta = pinv(X' * X) * X' * y;
 
 % -------------------------------------------------------------
 
